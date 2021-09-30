@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ar.com.example.notbored.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_termsAndConditionsFragment"
+            app:destination="@id/termsAndConditionsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_activitiesFragment"
+            app:destination="@id/activitiesFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsAndConditionsFragment"
+        android:name="ar.com.example.notbored.ui.TermsAndConditionsFragment"
+        android:label="fragment_terms_and_conditions"
+        tools:layout="@layout/fragment_terms_and_conditions" />
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="ar.com.example.notbored.ui.activitiesFragment.ActivitiesFragment"
+        android:label="@string/activities"
+        tools:layout="@layout/fragment_activities" >
+        <argument
+            android:name="participants"
+            app:argType="string"
+            android:defaultValue="2" />
+        <action
+            android:id="@+id/action_activitiesFragment_to_suggestFragment"
+            app:destination="@id/suggestFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/suggestFragment"
+        android:name="ar.com.example.notbored.ui.suggestFragment.SuggestFragment"
+        android:label="fragment_suggest"
+        tools:layout="@layout/fragment_suggest" >
+        <argument
+            android:name="participants"
+            app:argType="string"
+            android:defaultValue="2" />
+        <argument
+            android:name="suggestion"
+            app:argType="ar.com.example.notbored.data.RecreationalActivity" />
+        <argument
+            android:name="appBarTitle"
+            app:argType="string"
+            android:defaultValue="Recreational" />
+        <argument
+            android:name="randomWasPressed"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+</navigation>

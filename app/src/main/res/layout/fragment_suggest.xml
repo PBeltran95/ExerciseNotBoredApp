@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.suggestFragment.SuggestFragment">
+
+    <TextView
+        android:id="@+id/tv_suggestion_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="Take a bubble bath"
+        android:layout_margin="@dimen/common_margin"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <ImageView
+        android:id="@+id/img_participants"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/common_margin"
+        android:src="@drawable/ic_baseline_person"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline"/>
+    <ImageView
+        android:id="@+id/img_price"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/common_margin"
+        android:src="@drawable/ic_baseline_attach_money"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_participants"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <TextView
+        android:id="@+id/tv_participants"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_min_margin"
+        android:text="@string/participants_from_suggestion_screen"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintTop_toTopOf="@id/img_participants"
+        app:layout_constraintBottom_toBottomOf="@id/img_participants"
+        app:layout_constraintStart_toEndOf="@id/img_participants"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guideline"/>
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Price"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintBottom_toBottomOf="@id/img_price"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guideline"
+        app:layout_constraintStart_toEndOf="@id/img_participants"
+        app:layout_constraintTop_toTopOf="@id/img_price" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/category_view"
+        app:layout_constraintTop_toBottomOf="@id/img_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vertical_guideline">
+
+        <ImageView
+            android:id="@+id/img_category"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/common_margin"
+            android:visibility="visible"
+            android:src="@drawable/ic_baseline_category"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_category_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            app:layout_constraintTop_toTopOf="@id/img_category"
+            app:layout_constraintBottom_toBottomOf="@id/img_category"
+            app:layout_constraintStart_toEndOf="@id/img_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Relaxation"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_number_of_participants"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_min_margin"
+        android:layout_marginEnd="@dimen/common_margin"
+        android:textAlignment="center"
+        tools:text="2"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintTop_toTopOf="@id/img_participants"
+        app:layout_constraintBottom_toBottomOf="@id/img_participants"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/tv_price_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_min_margin"
+        android:layout_marginEnd="@dimen/common_margin"
+        tools:text="Medium"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintTop_toTopOf="@id/img_price"
+        app:layout_constraintBottom_toBottomOf="@id/img_price"
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_try_another"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_margin"
+        android:text="@string/try_another"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price"
+        app:layout_constraintVertical_bias="0.8"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
