@@ -1,7 +1,6 @@
 package ar.com.example.notbored.ui.suggestFragment
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -13,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import ar.com.example.notbored.data.Category
 import ar.com.example.notbored.data.RecreationalActivity
-import ar.com.example.notbored.repository.DataRepository
+import ar.com.example.notbored.domain.repository.DataRepository
 
 
 class SuggestFragment : Fragment(R.layout.fragment_suggest) {

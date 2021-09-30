@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ar.com.example.notbored.data.Category
 import ar.com.example.notbored.databinding.FragmentActivitiesBinding
-import ar.com.example.notbored.repository.DataRepository
+import ar.com.example.notbored.domain.repository.DataRepository
 
 
 

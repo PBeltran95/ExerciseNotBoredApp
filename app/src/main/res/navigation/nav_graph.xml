@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ar.com.example.notbored.ui.HomeFragment"
+        android:name="ar.com.example.notbored.ui.homeFragment.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_termsAndConditionsFragment"
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/termsAndConditionsFragment"
-        android:name="ar.com.example.notbored.ui.TermsAndConditionsFragment"
+        android:name="ar.com.example.notbored.ui.termsConditionsFragment.TermsAndConditionsFragment"
         android:label="fragment_terms_and_conditions"
         tools:layout="@layout/fragment_terms_and_conditions" />
     <fragment

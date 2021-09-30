@@ -1,4 +1,4 @@
-package ar.com.example.notbored.repository
+package ar.com.example.notbored.domain.repository
 
 import ar.com.example.notbored.data.Category
 import ar.com.example.notbored.data.RecreationalActivity

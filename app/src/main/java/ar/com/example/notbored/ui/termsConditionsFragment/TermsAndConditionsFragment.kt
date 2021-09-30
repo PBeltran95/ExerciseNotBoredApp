@@ -1,4 +1,4 @@
-package ar.com.example.notbored.ui
+package ar.com.example.notbored.ui.termsConditionsFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

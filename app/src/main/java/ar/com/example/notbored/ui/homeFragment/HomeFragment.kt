@@ -1,13 +1,12 @@
-package ar.com.example.notbored.ui
+package ar.com.example.notbored.ui.homeFragment
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import ar.com.example.notbored.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import ar.com.example.notbored.R
 
 
@@ -47,16 +46,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun watchText() {
-        binding.etNumber.addTextChangedListener(object : TextWatcher
-        { override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.btnStart.isEnabled = binding.etNumber.text?.startsWith("0") != true
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-            }
-        })
+        binding.etNumber.doAfterTextChanged {
+            binding.btnStart.isEnabled = binding.etNumber.text?.startsWith("0") != true
+        }
     }
 }
