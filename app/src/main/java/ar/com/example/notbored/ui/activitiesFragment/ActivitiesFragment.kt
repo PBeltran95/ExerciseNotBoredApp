@@ -48,6 +48,7 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
 
     private fun setActionBar() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun onCategoryClick(category: Category) {
@@ -62,7 +63,6 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
         val randomSuggestionList = categories[(0..10).random()].activities[(0..2).random()]
         return when (item.itemId) {
             ar.com.example.notbored.R.id.btn_random -> {
@@ -73,5 +73,8 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
             }else -> super.onOptionsItemSelected(item)
         }
     }
+
+
+
 
 }

@@ -2,12 +2,15 @@ package ar.com.example.notbored.ui.suggestFragment
 
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import ar.com.example.notbored.R
 import ar.com.example.notbored.databinding.FragmentSuggestBinding
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import ar.com.example.notbored.data.Category
 import ar.com.example.notbored.data.RecreationalActivity
 import ar.com.example.notbored.repository.DataRepository
@@ -17,6 +20,11 @@ class SuggestFragment : Fragment(R.layout.fragment_suggest) {
 
     private lateinit var binding:FragmentSuggestBinding
     private val args: SuggestFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -77,5 +85,12 @@ class SuggestFragment : Fragment(R.layout.fragment_suggest) {
             else -> "High"
         }
     }
-    
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        // handle the up button here
+        return NavigationUI.onNavDestinationSelected(item!!,
+            requireView().findNavController())
+                || super.onOptionsItemSelected(item)
+    }
+
 }
