@@ -36,6 +36,7 @@ class SuggestFragment : Fragment(R.layout.fragment_suggest) {
         binding = FragmentSuggestBinding.bind(view)
         onRandomPressed()
         buttonFunction()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
     private fun onRandomPressed() {

@@ -1,8 +1,11 @@
 package ar.com.example.notbored.ui.homeFragment
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import ar.com.example.notbored.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun toActivitiesFragment() {
         binding.btnStart.setOnClickListener {
+            closeSoftKeyboard(requireContext(), requireView())
             val etNumberValue = binding.etNumber.text.toString()
             viewModel.checkEditText(etNumberValue)
             viewModel.fetchEditTextCheck.observe(viewLifecycleOwner, Observer {
@@ -66,5 +70,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             })
         }
+    }
+    private fun closeSoftKeyboard(context: Context, view: View) {
+        val inputMethod = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethod.hideSoftInputFromWindow(view.windowToken, 0)
+        view.clearFocus()
     }
 }
