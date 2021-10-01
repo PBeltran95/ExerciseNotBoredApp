@@ -7,12 +7,17 @@ import androidx.navigation.fragment.findNavController
 import ar.com.example.notbored.databinding.FragmentHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import ar.com.example.notbored.R
+import ar.com.example.notbored.presentation.SharedViewModel
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding:FragmentHomeBinding
+    private val viewModel : SharedViewModel by activityViewModels()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,24 +25,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         watchText()
         toTermsAndConditions()
         noActionBar()
-        toActivities()
-    }
-
-    private fun toActivities() {
-        binding.btnStart.setOnClickListener {
-            if (!binding.etNumber.text.isNullOrEmpty()){
-                val participants = binding.etNumber.text.toString()
-                val action = HomeFragmentDirections.actionHomeFragmentToActivitiesFragment(participants)
-                findNavController().navigate(action)
-            }else{
-                findNavController().navigate(R.id.action_homeFragment_to_activitiesFragment)
-            }
-        }
+        toActivitiesFragment()
     }
 
     private fun noActionBar() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
     }
+
+    private fun toActivitiesFragment() {
+        binding.btnStart.setOnClickListener {
+            val etNumberValue = binding.etNumber.text.toString()
+            viewModel.checkEditText(etNumberValue)
+            viewModel.fetchEditTextCheck.observe(viewLifecycleOwner, Observer {
+                when(it){
+                    false -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_activitiesFragment)
+                    }
+                    true -> {
+                        val action = HomeFragmentDirections.actionHomeFragmentToActivitiesFragment(etNumberValue)
+                        findNavController().navigate(action)}
+                }
+            })
+        }
+    }
+
 
     private fun toTermsAndConditions() {
         binding.termsLink.setOnClickListener {
@@ -47,7 +58,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun watchText() {
         binding.etNumber.doAfterTextChanged {
-            binding.btnStart.isEnabled = binding.etNumber.text?.startsWith("0") != true
+            val etValue = binding.etNumber.text.toString()
+            viewModel.preventEditTextBeginWithZero(etValue).observe(viewLifecycleOwner, Observer { itsZero ->
+                when(itsZero){
+                    true -> binding.btnStart.isEnabled = false
+                    false -> binding.btnStart.isEnabled = true
+                }
+            })
         }
     }
 }

@@ -7,21 +7,22 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ar.com.example.notbored.data.Category
 import ar.com.example.notbored.databinding.FragmentActivitiesBinding
 import ar.com.example.notbored.domain.repository.DataRepository
-
-
-
+import ar.com.example.notbored.presentation.SharedViewModel
 
 class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_activities), CategoryAdapter.OnClick {
 
 
     private lateinit var binding: FragmentActivitiesBinding
-    private val participants :ActivitiesFragmentArgs by navArgs()
+    private val args :ActivitiesFragmentArgs by navArgs()
     private val categories = DataRepository.listOfCategories
+    private val viewModel : SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentActivitiesBinding.bind(view)
         setActionBar()
-        setDataAndRecyclerView()
+        initRecyclerView()
         setTitle()
 
     }
@@ -41,8 +42,7 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Activities"
     }
 
-    private fun setDataAndRecyclerView() {
-
+    private fun initRecyclerView() {
         binding.rvCategories.adapter = CategoryAdapter(categories, this@ActivitiesFragment)
     }
 
@@ -52,9 +52,8 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
     }
 
     override fun onCategoryClick(category: Category) {
-        val suggestionList = category.activities[(0..2).random()]
-        val action = ActivitiesFragmentDirections.actionActivitiesFragmentToSuggestFragment(participants = participants.participants,
-            suggestionList)
+        viewModel.saveCategorySelected(category)
+        val action = ActivitiesFragmentDirections.actionActivitiesFragmentToSuggestFragment(participants = args.participants)
         findNavController().navigate(action)
     }
 
@@ -63,11 +62,10 @@ class ActivitiesFragment : Fragment(ar.com.example.notbored.R.layout.fragment_ac
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val randomSuggestionList = categories[(0..10).random()].activities[(0..2).random()]
         return when (item.itemId) {
             ar.com.example.notbored.R.id.btn_random -> {
-                val action = ActivitiesFragmentDirections.actionActivitiesFragmentToSuggestFragment(participants = participants.participants,
-                    randomSuggestionList, "Random", true)
+                val action = ActivitiesFragmentDirections.actionActivitiesFragmentToSuggestFragment(
+                    args.participants, "Random", true)
                 findNavController().navigate(action)
                 true
             }else -> super.onOptionsItemSelected(item)

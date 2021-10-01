@@ -55,9 +55,7 @@
             android:name="participants"
             app:argType="string"
             android:defaultValue="2" />
-        <argument
-            android:name="suggestion"
-            app:argType="ar.com.example.notbored.data.RecreationalActivity" />
+
         <argument
             android:name="appBarTitle"
             app:argType="string"
