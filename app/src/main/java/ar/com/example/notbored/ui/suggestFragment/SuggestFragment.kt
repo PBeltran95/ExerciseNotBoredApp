@@ -26,10 +26,6 @@ class SuggestFragment : Fragment(R.layout.fragment_suggest) {
     private val args: SuggestFragmentArgs by navArgs()
     private val viewModel : SharedViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
